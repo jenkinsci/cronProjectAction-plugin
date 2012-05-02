@@ -1,0 +1,29 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:f="/lib/form">
+
+<script language="JavaScript" >
+function replaceCronListing(id, url) {
+  var d = document.getElementById(id);
+  new Ajax.Request(url,
+  {
+    onComplete : function(x) {
+    d.innerHTML = x.responseText;
+      evalInnerHtmlScripts(x.responseText,function() {
+        Behaviour.applySubtree(d);
+      });
+    }
+  });
+//  return false;
+}
+</script>
+
+  <h2>Cron</h2>
+  <div id="cronListing">
+    <p>
+    ${from.getCronTrigger()}
+    </p>
+    <a href="javascript:replaceCronListing('cronListing','${from.getUrlName()}');">
+      <img alt="" src="/images/16x16/notepad.png" height="16" width="16"/>
+      Edit Cron
+    </a>
+  </div>
+</j:jelly>

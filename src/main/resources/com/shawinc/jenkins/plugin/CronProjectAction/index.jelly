@@ -1,0 +1,29 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:f="/lib/form"
+xmlns:g2="null">
+
+  <j:set var="crons" value="${it.getTriggers()}"/>
+	<j:if test="${!empty(crons)}">
+  	<f:form method="get" action="${it.urlName}/update">
+      <j:forEach var="entry" items="${crons.entrySet()}">
+        <j:set var="trigger" value="${entry.getValue()}"/>
+        <j:set var="value" value=""/>
+        <j:set var="inputName" value="TimerTrigger"/>
+        <j:if test="${!empty(trigger)}">
+           <j:set var="value" value="${trigger.getSpec()}"/>
+           <j:set var="inputName" value="${trigger.getClass().getName()}"/>
+        </j:if>
+        <j:set var="name" value="${entry.getKey()}"/>
+        <tr>
+          <td>${name}</td>
+          <td><input name="${inputName}"
+            type="text" size="20" value="${value}" /></td>
+        </tr>
+      </j:forEach>
+      <tr><td>
+        <input type="submit" value="${%Submit}"/>
+      </td></tr>
+    </f:form>
+  </j:if>
+  <div id="cronHelp"><a href="javascript:replaceCronListing('cronHelp','/descriptor/hudson.triggers.TimerTrigger/help/spec')"><img alt="help" src="/images/16x16/help.png" height="16" width="16"/></a></div>
+
+</j:jelly>
