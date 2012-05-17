@@ -24,8 +24,7 @@
 package com.shawinc.jenkins.plugin;
 
 import antlr.ANTLRException;
-import hudson.model.AbstractProject;
-import hudson.model.Action;
+import hudson.model.*;
 import hudson.scm.NullSCM;
 import hudson.scm.SCM;
 import hudson.triggers.SCMTrigger;
@@ -92,6 +91,11 @@ public class CronProjectAction implements Action {
 
   public final void doUpdate(StaplerRequest req, StaplerResponse rsp)
           throws ServletException, IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ANTLRException {
+
+    // throws exception if !perms
+    Job j = req.findAncestorObject(Job.class);
+    j.checkPermission(Item.CONFIGURE);
+
     Map<String, Object> params = req.getParameterMap();
     Set<String> keyCopy = new HashSet<String>(params.keySet());
 

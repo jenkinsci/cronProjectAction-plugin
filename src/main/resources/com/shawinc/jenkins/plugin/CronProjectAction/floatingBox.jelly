@@ -43,9 +43,11 @@ function replaceCronListing(id, url) {
     <p>
     ${from.getCronTrigger()}
     </p>
-    <a href="javascript:replaceCronListing('cronListing','${from.getUrlName()}');">
-      <img alt="" src="/images/16x16/notepad.png" height="16" width="16"/>
-      Edit Cron
-    </a>
+    <j:if test="${h.hasPermission(it,it.CONFIGURE)}">
+      <a href="javascript:replaceCronListing('cronListing','${from.getUrlName()}');">
+        <img alt="" src="/images/16x16/notepad.png" height="16" width="16"/>
+        Edit Cron
+      </a>
+    </j:if>
   </div>
 </j:jelly>

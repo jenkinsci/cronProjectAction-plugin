@@ -8,7 +8,7 @@
 
   <groupId>com.shawinc.jenkins.plugin</groupId>
   <artifactId>project-cron-action</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <packaging>hpi</packaging>
 
 
@@ -31,15 +31,16 @@
   <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
   <repositories>
     <repository>
-      <id>m.g.o-public</id>
-      <url>http://maven.glassfish.org/content/groups/public/</url>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
 
+
   <pluginRepositories>
     <pluginRepository>
-      <id>m.g.o-public</id>
-      <url>http://maven.glassfish.org/content/groups/public/</url>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
 </project>
